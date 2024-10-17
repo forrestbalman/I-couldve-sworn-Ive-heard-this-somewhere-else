@@ -395,7 +395,7 @@
 				C4: "C4.wav",
 				C5: "C5.wav",
 			},
-			baseUrl: "/plucks/",
+			baseUrl: path + "/plucks/",
 			release: 1,
 		}).connect(reverb);
 
@@ -406,7 +406,7 @@
 				C4: "C4.wav",
 				C5: "C5.wav",
 			},
-			baseUrl: "/winds/",
+			baseUrl: path + "/winds/",
 			release: 1,
 			curve: "exponential",
 		}).connect(reverb);
@@ -475,64 +475,64 @@
 			],
 		};
 		incidentals = [
-			new Tone.ToneAudioBuffer("/incidentals/1.wav", () => {
+			new Tone.ToneAudioBuffer(path + "/incidentals/1.wav", () => {
 				bufferCounter++;
 			}),
-			new Tone.ToneAudioBuffer("/incidentals/2.wav", () => {
+			new Tone.ToneAudioBuffer(path + "/incidentals/2.wav", () => {
 				bufferCounter++;
 			}),
-			new Tone.ToneAudioBuffer("/incidentals/3.wav", () => {
+			new Tone.ToneAudioBuffer(path + "/incidentals/3.wav", () => {
 				bufferCounter++;
 			}),
-			new Tone.ToneAudioBuffer("/incidentals/4.wav", () => {
+			new Tone.ToneAudioBuffer(path + "/incidentals/4.wav", () => {
 				bufferCounter++;
 			}),
-			new Tone.ToneAudioBuffer("/incidentals/5.wav", () => {
+			new Tone.ToneAudioBuffer(path + "/incidentals/5.wav", () => {
 				bufferCounter++;
 			}),
-			new Tone.ToneAudioBuffer("/incidentals/6.wav", () => {
+			new Tone.ToneAudioBuffer(path + "/incidentals/6.wav", () => {
 				bufferCounter++;
 			}),
-			new Tone.ToneAudioBuffer("/incidentals/7.wav", () => {
+			new Tone.ToneAudioBuffer(path + "/incidentals/7.wav", () => {
 				bufferCounter++;
 			}),
-			new Tone.ToneAudioBuffer("/incidentals/8.wav", () => {
+			new Tone.ToneAudioBuffer(path + "/incidentals/8.wav", () => {
 				bufferCounter++;
 			}),
-			new Tone.ToneAudioBuffer("/incidentals/9.wav", () => {
+			new Tone.ToneAudioBuffer(path + "/incidentals/9.wav", () => {
 				bufferCounter++;
 			}),
-			new Tone.ToneAudioBuffer("/incidentals/10.wav", () => {
+			new Tone.ToneAudioBuffer(path + "/incidentals/10.wav", () => {
 				bufferCounter++;
 			}),
-			new Tone.ToneAudioBuffer("/incidentals/11.wav", () => {
+			new Tone.ToneAudioBuffer(path + "/incidentals/11.wav", () => {
 				bufferCounter++;
 			}),
-			new Tone.ToneAudioBuffer("/incidentals/12.wav", () => {
+			new Tone.ToneAudioBuffer(path + "/incidentals/12.wav", () => {
 				bufferCounter++;
 			}),
-			new Tone.ToneAudioBuffer("/incidentals/13.wav", () => {
+			new Tone.ToneAudioBuffer(path + "/incidentals/13.wav", () => {
 				bufferCounter++;
 			}),
-			new Tone.ToneAudioBuffer("/incidentals/14.wav", () => {
+			new Tone.ToneAudioBuffer(path + "/incidentals/14.wav", () => {
 				bufferCounter++;
 			}),
-			new Tone.ToneAudioBuffer("/incidentals/15.wav", () => {
+			new Tone.ToneAudioBuffer(path + "/incidentals/15.wav", () => {
 				bufferCounter++;
 			}),
-			new Tone.ToneAudioBuffer("/incidentals/16.wav", () => {
+			new Tone.ToneAudioBuffer(path + "/incidentals/16.wav", () => {
 				bufferCounter++;
 			}),
-			new Tone.ToneAudioBuffer("/incidentals/17.wav", () => {
+			new Tone.ToneAudioBuffer(path + "/incidentals/17.wav", () => {
 				bufferCounter++;
 			}),
-			new Tone.ToneAudioBuffer("/incidentals/18.wav", () => {
+			new Tone.ToneAudioBuffer(path + "/incidentals/18.wav", () => {
 				bufferCounter++;
 			}),
-			new Tone.ToneAudioBuffer("/incidentals/19.wav", () => {
+			new Tone.ToneAudioBuffer(path + "/incidentals/19.wav", () => {
 				bufferCounter++;
 			}),
-			new Tone.ToneAudioBuffer("/incidentals/20.wav", () => {
+			new Tone.ToneAudioBuffer(path + "/incidentals/20.wav", () => {
 				bufferCounter++;
 			}),
 		];
