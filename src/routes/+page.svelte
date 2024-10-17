@@ -374,7 +374,7 @@
 	];
 
 	function createSynths() {
-		globalVolume = new Tone.Volume(-6).toDestination();
+		globalVolume = new Tone.Volume(0).toDestination();
 		reverb = new Tone.Reverb(1.5).connect(globalVolume);
 
 		const mallets = new Tone.Sampler({
