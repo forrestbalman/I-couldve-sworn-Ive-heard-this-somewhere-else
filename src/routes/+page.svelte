@@ -19,6 +19,7 @@
 	let playing = false;
 	let finished = false;
 	let timer = 0;
+	let path = "/I-couldve-sworn-Ive-heard-this-somewhere-else";
 	let synths, drones, incidentals, reverb, globalVolume, username;
 
 	const melodies = [
@@ -421,54 +422,54 @@
 	function createBuffers() {
 		drones = {
 			low: [
-				new Tone.ToneAudioBuffer("/static/low_drone/C1.wav", () => {
+				new Tone.ToneAudioBuffer(path + "/low_drone/C1.wav", () => {
 					bufferCounter++;
 				}),
-				new Tone.ToneAudioBuffer("/low_drone/Cs1.wav", () => {
+				new Tone.ToneAudioBuffer(path + "/low_drone/Cs1.wav", () => {
 					bufferCounter++;
 				}),
-				new Tone.ToneAudioBuffer("/low_drone/D1.wav", () => {
+				new Tone.ToneAudioBuffer(path + "/low_drone/D1.wav", () => {
 					bufferCounter++;
 				}),
-				new Tone.ToneAudioBuffer("/low_drone/Ds1.wav", () => {
+				new Tone.ToneAudioBuffer(path + "/low_drone/Ds1.wav", () => {
 					bufferCounter++;
 				}),
-				new Tone.ToneAudioBuffer("/low_drone/E1.wav", () => {
+				new Tone.ToneAudioBuffer(path + "/low_drone/E1.wav", () => {
 					bufferCounter++;
 				}),
-				new Tone.ToneAudioBuffer("/low_drone/F1.wav", () => {
+				new Tone.ToneAudioBuffer(path + "/low_drone/F1.wav", () => {
 					bufferCounter++;
 				}),
-				new Tone.ToneAudioBuffer("/low_drone/Fs1.wav", () => {
+				new Tone.ToneAudioBuffer(path + "/low_drone/Fs1.wav", () => {
 					bufferCounter++;
 				}),
-				new Tone.ToneAudioBuffer("/low_drone/G1.wav", () => {
+				new Tone.ToneAudioBuffer(path + "/low_drone/G1.wav", () => {
 					bufferCounter++;
 				}),
 			],
 			high: [
-				new Tone.ToneAudioBuffer("/high_drone/C6.wav", () => {
+				new Tone.ToneAudioBuffer(path + "/high_drone/C6.wav", () => {
 					bufferCounter++;
 				}),
-				new Tone.ToneAudioBuffer("/high_drone/Cs6.wav", () => {
+				new Tone.ToneAudioBuffer(path + "/high_drone/Cs6.wav", () => {
 					bufferCounter++;
 				}),
-				new Tone.ToneAudioBuffer("/high_drone/D6.wav", () => {
+				new Tone.ToneAudioBuffer(path + "/high_drone/D6.wav", () => {
 					bufferCounter++;
 				}),
-				new Tone.ToneAudioBuffer("/high_drone/Ds6.wav", () => {
+				new Tone.ToneAudioBuffer(path + "/high_drone/Ds6.wav", () => {
 					bufferCounter++;
 				}),
-				new Tone.ToneAudioBuffer("/high_drone/E6.wav", () => {
+				new Tone.ToneAudioBuffer(path + "/high_drone/E6.wav", () => {
 					bufferCounter++;
 				}),
-				new Tone.ToneAudioBuffer("/high_drone/F6.wav", () => {
+				new Tone.ToneAudioBuffer(path + "/high_drone/F6.wav", () => {
 					bufferCounter++;
 				}),
-				new Tone.ToneAudioBuffer("/high_drone/Fs6.wav", () => {
+				new Tone.ToneAudioBuffer(path + "/high_drone/Fs6.wav", () => {
 					bufferCounter++;
 				}),
-				new Tone.ToneAudioBuffer("/high_drone/G6.wav", () => {
+				new Tone.ToneAudioBuffer(path + "/high_drone/G6.wav", () => {
 					bufferCounter++;
 				}),
 			],
