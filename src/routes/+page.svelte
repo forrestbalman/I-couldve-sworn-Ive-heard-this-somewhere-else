@@ -386,6 +386,9 @@
 			},
 			baseUrl: path + "/mallets/",
 			release: 1,
+			onload: () => {
+				bufferCounter += 4;
+			},
 		}).connect(reverb);
 
 		const plucks = new Tone.Sampler({
@@ -397,6 +400,9 @@
 			},
 			baseUrl: path + "/plucks/",
 			release: 1,
+			onload: () => {
+				bufferCounter += 4;
+			},
 		}).connect(reverb);
 
 		const winds = new Tone.Sampler({
@@ -409,6 +415,9 @@
 			baseUrl: path + "/winds/",
 			release: 1,
 			curve: "exponential",
+			onload: () => {
+				bufferCounter += 4;
+			},
 		}).connect(reverb);
 		winds.volume.value = -6;
 
