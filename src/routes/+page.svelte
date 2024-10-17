@@ -421,7 +421,7 @@
 	function createBuffers() {
 		drones = {
 			low: [
-				new Tone.ToneAudioBuffer("/low_drone/C1.wav", () => {
+				new Tone.ToneAudioBuffer("/static/low_drone/C1.wav", () => {
 					bufferCounter++;
 				}),
 				new Tone.ToneAudioBuffer("/low_drone/Cs1.wav", () => {
