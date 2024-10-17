@@ -1015,7 +1015,7 @@
 				<ol>
 					<li class="mb-3">Type your <span class="fw-bold">first name</span> in the text field <input type="text" class="ms-3 rounded-2 border-0 p-1" bind:value="{username}" /></li>
 					<li class="mb-3">Click the "Download Analysis" button <button class=" ms-3 btn btn-light" on:click="{finalizeAnalysis}">Download Analysis</button></li>
-					<li>Attach the file to an email and send it to <a href="mailto:fbalman@ucsc.edu">fbalman@uscs.edu</a></li>
+					<li>Attach the file to an email and send it to <a href="mailto:fbalman@ucsc.edu">fbalman@ucsc.edu</a></li>
 				</ol>
 			</div>
 		</div>
