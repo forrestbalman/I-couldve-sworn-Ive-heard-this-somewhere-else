@@ -384,7 +384,7 @@
 				C4: "C4.wav",
 				C5: "C5.wav",
 			},
-			baseUrl: "/mallets/",
+			baseUrl: path + "/mallets/",
 			release: 1,
 		}).connect(reverb);
 
@@ -977,7 +977,7 @@
 		}, 300000);
 	}
 
-	$: if (bufferCounter === 36) {
+	$: if (bufferCounter === 48) {
 		setTimeout(() => {
 			opacities.play = 1;
 		});
@@ -1000,11 +1000,11 @@
 				<button class="btn btn-light btn-lg" on:click="{initializeAudio}">Load Audio</button>
 			</div>
 		</div>
-	{:else if bufferCounter !== 36 && !playing}
+	{:else if bufferCounter !== 48 && !playing}
 		<div class="container d-flex flex-column justify-content-center align-items-center">
 			<h4 class="display-4 text-center user-select-none text-light">Loading...</h4>
 			<div class="progress w-100">
-				<div class="progress-bar bg-warning" role="progressbar" style="width: {(bufferCounter / 36) * 100}%;" aria-valuenow="{(bufferCounter / 36) * 100}" aria-valuemin="0" aria-valuemax="100"></div>
+				<div class="progress-bar bg-warning" role="progressbar" style="width: {(bufferCounter / 48) * 100}%;" aria-valuenow="{(bufferCounter / 48) * 100}" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
 		</div>
 	{:else if finished}
@@ -1029,7 +1029,7 @@
 				<div class="w-100 bg-white" style="height: {100 / noteSlivers.length}%; opacity: {note}; transition: opacity 0.3s ease;"></div>
 			{/each}
 		</div>
-		<button class="btn btn-light btn-lg z-2" style="opacity: {opacities.play};" on:click="{startPiece}" disabled="{bufferCounter !== 36}">Play</button>
+		<button class="btn btn-light btn-lg z-2" style="opacity: {opacities.play};" on:click="{startPiece}" disabled="{bufferCounter !== 48}">Play</button>
 	{/if}
 </main>
 
