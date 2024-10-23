@@ -1,5 +1,6 @@
 <script>
 	import * as Tone from "tone";
+	import Analysis from "$lib/analysis/Analysis.svelte";
 	import { onMount } from "svelte";
 
 	let audioStarted = false;
@@ -998,7 +999,7 @@
 
 <main class="d-flex min-vh-100 flex-column justify-content-center align-items-center text-light position-relative" style="background: {background};">
 	<div class="homepage position-absolute top-0 end-0 m-3 d-flex gap-3" style="opacity: {opacities.homepage};">
-		<a class="text-light" href="/analysis" target="_blank">Analysis</a>
+		<a class="text-light" href="#analysis">Analysis</a>
 		<a class="text-light" href="https://forrestbalman.com" target="_blank">forrestbalman.com</a>
 	</div>
 	{#if !audioStarted}
@@ -1040,6 +1041,7 @@
 		<button class="btn btn-light btn-lg z-2" style="opacity: {opacities.play};" on:click="{startPiece}" disabled="{bufferCounter !== 48}">Play</button>
 	{/if}
 </main>
+<Analysis />
 
 <style>
 	* {
