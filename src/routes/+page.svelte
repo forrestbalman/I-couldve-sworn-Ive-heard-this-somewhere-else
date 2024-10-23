@@ -563,7 +563,6 @@
 
 				drone.start();
 
-				// random time between 45000 and 55000 seconds to wait
 				const timeToWait = Math.floor(Math.random() * 10000) + 45000;
 
 				setTimeout(() => {
@@ -580,7 +579,6 @@
 
 				drone.start();
 
-				// random time between 45000 and 55000 seconds to wait
 				const timeToWait = Math.floor(Math.random() * 10000) + 45000;
 
 				setTimeout(() => {
@@ -999,7 +997,8 @@
 </script>
 
 <main class="d-flex min-vh-100 flex-column justify-content-center align-items-center text-light position-relative" style="background: {background};">
-	<div class="homepage position-absolute top-0 end-0 m-3" style="opacity: {opacities.homepage};">
+	<div class="homepage position-absolute top-0 end-0 m-3 d-flex gap-3" style="opacity: {opacities.homepage};">
+		<a class="text-light" href="/analysis" target="_blank">Analysis</a>
 		<a class="text-light" href="https://forrestbalman.com" target="_blank">forrestbalman.com</a>
 	</div>
 	{#if !audioStarted}
