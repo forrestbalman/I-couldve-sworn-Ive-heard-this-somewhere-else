@@ -1,20 +1,38 @@
 <script>
 	import * as d3 from "d3";
-	import { onMount, afterUpdate, onDestroy } from "svelte";
+	import { onMount, afterUpdate } from "svelte";
 	import Notation from "$lib/analysis/Notation.svelte";
 
 	export let data;
 
-	let hoveredMelodyInfo = data.source[0];
+	let melodyName, timestamp, originalTempo, alteredTempo, originalMelody, alteredMelody, truncation, duration, pitches;
 	let melodyBars, width, height, margin, x, T, f, xAxis;
 
 	function createAxis(svgId) {
 		const svg = d3.select(`#${svgId}`);
+
+		// Clear existing elements
 		svg.selectAll("*").remove();
 
+		// Define dimensions and scales
+		width = 900;
+		height = 100;
+		margin = { top: 20, right: 0, bottom: 20, left: 0 };
+		x = d3
+			.scaleTime()
+			.domain([new Date("2024-10-17T10:15:43"), new Date("2024-10-17T10:20:57")])
+			.range([margin.left, width - margin.right]);
+		T = x.ticks();
+		f = x.tickFormat();
+		xAxis = d3.axisBottom(x).tickValues(T).tickFormat(f);
+
+		// Append the axis
 		svg.append("g")
 			.attr("transform", `translate(0, ${height - margin.bottom})`)
 			.call(xAxis);
+
+		// Log the SVG element to the console for debugging
+		console.log(svg);
 	}
 
 	function createMelodyBars() {
@@ -154,6 +172,8 @@
 		melodyBars = [];
 		melodyBars = bars.filter((bar) => !isNaN(bar.start) && !isNaN(bar.end));
 
+		console.log("Melody Bars:", melodyBars); // Debugging line
+
 		const svg = d3.select("#timeline");
 		const barHeight = 15;
 
@@ -167,30 +187,37 @@
 			.attr("height", barHeight)
 			.attr("fill", data.color || "steelblue")
 			.attr("data-melody", (d) => JSON.stringify(d))
-			.on("mouseover", function (event, d) {
+			.on("click", function (event, d) {
+				const melody = JSON.parse(d3.select(this).attr("data-melody"));
+
+				svg.selectAll("rect").attr("fill", data.color || "steelblue");
 				d3.select(this).attr("fill", "white");
-                hoveredMelodyInfo = d.melody;
-			})
-			.on("mouseout", function () {
-				d3.select(this).attr("fill", data.color || "steelblue");
+
+				melodyName = melody.melody.melodyName;
+				timestamp = melody.melody.timestamp;
+				originalTempo = melody.melody.originalTempo;
+				alteredTempo = melody.melody.alteredTempo;
+				originalMelody = melody.melody.originalMelody;
+				alteredMelody = melody.melody.alteredMelody;
+				truncation = melody.melody.truncation;
+				duration = melody.melody.duration;
+				pitches = melody.melody.pitches;
 			});
 	}
 
 	onMount(() => {
-		width = 900;
-		height = 100;
-		margin = { top: 20, right: 0, bottom: 20, left: 0 };
-		x = d3
-			.scaleTime()
-			.domain([new Date("2024-10-17T10:15:43"), new Date("2024-10-17T10:20:57")])
-			.range([margin.left, width - margin.right]);
-		T = x.ticks();
-		f = x.tickFormat();
-		xAxis = d3.axisBottom(x).tickValues(T).tickFormat(f);
-	});
+		melodyName = data.source[0].melodyName;
+		timestamp = data.source[0].timestamp;
+		originalTempo = data.source[0].originalTempo;
+		alteredTempo = data.source[0].alteredTempo;
+		originalMelody = data.source[0].originalMelody;
+		alteredMelody = data.source[0].alteredMelody;
+		truncation = data.source[0].truncation;
+		duration = data.source[0].duration;
+		pitches = data.source[0].pitches;
 
-	onDestroy(() => {
-		console.log("destroyed");
+		createAxis("timeline");
+		createMelodyBars();
 	});
 
 	afterUpdate(() => {
@@ -201,39 +228,41 @@
 
 <div class="container">
 	<h4>Melody Timeline</h4>
-	<p>This graph illustrates all melodies as they occur over the span of the performance, which took place on October 17th 2024 from 10:15:43AM until 10:20:57AM. Hovering over individual wedges will give you info about the melody that was generated at that time.</p>
+	<p>This graph illustrates all melodies as they occur over the span of the performance, which took place on October 17th 2024 from 10:15:43AM until 10:20:57AM. Clicking on individual wedges will give you info about the melody that was generated at that time.</p>
 	<svg id="timeline" class="mb-3" {width} {height}></svg>
-	<h5>Hovered Melody Info</h5>
-	<ul>
-		<li>Original Melody - <span class="fw-bold">{hoveredMelodyInfo.melodyName}</span></li>
-		<li>This melody was generated at {hoveredMelodyInfo.timestamp.substring(12)}</li>
-		<li>Original Tempo - <span class="fw-bold">{hoveredMelodyInfo.originalTempo} BPM</span></li>
-		<li>
-			Altered Tempo - <span class="fw-bold">{hoveredMelodyInfo.alteredTempo} BPM</span>
-			{#if hoveredMelodyInfo.originalTempo !== hoveredMelodyInfo.alteredTempo}
-				which is a <span class="fw-bold">{hoveredMelodyInfo.originalTempo > hoveredMelodyInfo.alteredTempo ? `${hoveredMelodyInfo.originalTempo - hoveredMelodyInfo.alteredTempo} BPM decrease` : `${hoveredMelodyInfo.alteredTempo - hoveredMelodyInfo.originalTempo} BPM increase`}</span>
+	<h5>Melody Info</h5>
+	{#if melodyName}
+		<ul>
+			<li>Original Melody - <span class="fw-bold">{melodyName}</span></li>
+			<li>This melody was generated at {timestamp.substring(12)}</li>
+			<li>Original Tempo - <span class="fw-bold">{originalTempo} BPM</span></li>
+			<li>
+				Altered Tempo - <span class="fw-bold">{alteredTempo} BPM</span>
+				{#if originalTempo !== alteredTempo}
+					which is a <span class="fw-bold">{originalTempo > alteredTempo ? `${originalTempo - alteredTempo} BPM decrease` : `${alteredTempo - originalTempo} BPM increase`}</span>
+				{/if}
+			</li>
+			<li>
+				{#if Object.keys(truncation).length > 0}
+					This melody was <span class="fw-bold">truncated</span> to <span class="fw-bold">{truncation.alteredLength} notes</span>. That is a <span class="fw-bold">{truncation.originalLength - truncation.alteredLength} note decrease</span>.
+				{:else if Object.keys(duration).length > 0}
+					The <span class="fw-bold">durations were altered</span> starting at <span class="fw-bold">note {duration.firstChange + 1}</span>.
+				{:else if Object.keys(pitches).length > 0}
+					The melody's <span class="fw-bold">pitches were altered</span> starting at <span class="fw-bold">note {pitches.firstChange + 1}</span>.
+				{:else}
+					This melody <span class="fw-bold">didn't undergo any structural alterations</span>. This is exceptionally rare, with a <span class="fw-bold">likelihood of 1 in 100</span>.
+				{/if}
+			</li>
+		</ul>
+		<div style="min-height: 380px;">
+			<h5>Here is the original melody</h5>
+			<Notation melody="{originalMelody}" id="{'originalMelody'}" />
+			{#if Object.keys(truncation).length !== 0 || Object.keys(duration).length !== 0 || Object.keys(pitches).length !== 0}
+				<h5 class="mt-3">And here's the altered melody</h5>
+				<Notation melody="{alteredMelody}" id="{'alteredMelody'}" />
 			{/if}
-		</li>
-		<li>
-			{#if Object.keys(hoveredMelodyInfo.truncation).length > 0}
-				This melody was <span class="fw-bold">truncated</span> to <span class="fw-bold">{hoveredMelodyInfo.truncation.alteredLength} notes</span>. That is a <span class="fw-bold">{hoveredMelodyInfo.truncation.originalLength - hoveredMelodyInfo.truncation.alteredLength} note decrease</span>.
-			{:else if Object.keys(hoveredMelodyInfo.duration).length > 0}
-				The <span class="fw-bold">durations were altered</span> starting at <span class="fw-bold">note {hoveredMelodyInfo.duration.firstChange + 1}</span>.
-			{:else if Object.keys(hoveredMelodyInfo.pitches).length > 0}
-				The melody's <span class="fw-bold">pitches were altered</span> starting at <span class="fw-bold">note {hoveredMelodyInfo.pitches.firstChange + 1}</span>.
-			{:else}
-				This melody <span class="fw-bold">didn't undergo any structural alterations</span>. This is exceptionally rare, with a <span class="fw-bold">likelihood of 1 in 100</span>.
-			{/if}
-		</li>
-	</ul>
-	<div style="min-height: 380px;">
-		<h5>Here is the original melody</h5>
-		<Notation melody="{hoveredMelodyInfo.originalMelody}" id="{'originalMelody'}" />
-		{#if Object.keys(hoveredMelodyInfo.truncation).length !== 0 || Object.keys(hoveredMelodyInfo.duration).length !== 0 || Object.keys(hoveredMelodyInfo.pitches).length !== 0}
-			<h5 class="mt-3">And here's the altered melody</h5>
-			<Notation melody="{hoveredMelodyInfo.alteredMelody}" id="{'alteredMelody'}" />
-		{/if}
-	</div>
+		</div>
+	{/if}
 </div>
 
 <style>
