@@ -4,7 +4,6 @@
 	import MostCommonMelodies from "$lib/analysis/MostCommonMelodies.svelte";
 	import UnalteredMelodies from "$lib/analysis/UnalteredMelodies.svelte";
 	import MelodyTimeline from "$lib/analysis/MelodyTimeline.svelte";
-
 	import aryaComputer from "$lib/analysis/Arya_computer.json";
 	import aryaPhone from "$lib/analysis/Arya_phone.json";
 	import emersonComputer from "$lib/analysis/Emerson_computer.json";
@@ -83,7 +82,6 @@
 			source: vidulaComputer,
 		},
 	];
-	const path = "/I-couldve-sworn-Ive-heard-this-somewhere-else";
 
 	let data = sources[0];
 	let container;

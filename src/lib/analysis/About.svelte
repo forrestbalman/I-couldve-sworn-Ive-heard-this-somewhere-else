@@ -1,4 +1,5 @@
 <script>
+	import { base } from "$app/paths";
 	import aryaComputer from "$lib/analysis/Arya_computer.json";
 	import aryaPhone from "$lib/analysis/Arya_phone.json";
 	import emersonComputer from "$lib/analysis/Emerson_computer.json";
@@ -151,7 +152,7 @@
 			creates coincidental sound combinations/sequences that, likely, wouldn't be possible for the composer to intend.
 		</p>
 		<figure>
-			<img class="img-fluid" src="/notation.png" alt="An excerpt with some notation from my piece Have You Ever Wondered Why the Mole People March? for double bass" />
+			<img class="img-fluid" src="{base}/notation.png" alt="An excerpt with some notation from my piece Have You Ever Wondered Why the Mole People March? for double bass" />
 			<figcaption style="font-size: 14px; color: rgb(108, 117, 125);">An excerpt with some notation from my piece <span class="fst-italic">Have You Ever Wondered Why the Mole People March?</span> for double bass that illustrates chance.</figcaption>
 		</figure>
 		<p>
@@ -172,7 +173,7 @@
 			<li>Pitches will be from an equally tempered chromatic scale from C4 to C5</li>
 		</ul>
 		<figure>
-			<img class="img-fluid" src="/code-1.png" alt="Javascript code that generates a random melody" />
+			<img class="img-fluid" src="{base}/code-1.png" alt="Javascript code that generates a random melody" />
 			<figcaption style="font-size: 14px; color: rgb(108, 117, 125);">Javascript code that generates a random melody</figcaption>
 		</figure>
 		<p>
@@ -205,7 +206,7 @@
 					<p>The low drone is a metallic-inspired, grainy, synth that can occur as a random note between C1 and G1</p>
 				</div>
 				<audio controls class="w-100">
-					<source src="/low_drone/C1.wav" />
+					<source src="{base}/low_drone/C1.wav" />
 					Your browser does not support the audio element.
 				</audio>
 			</div>
@@ -215,7 +216,7 @@
 					<p>The high drone is a breathy, tinny, synth that can occur as a random note between C6 and G6</p>
 				</div>
 				<audio controls class="w-100">
-					<source src="/high_drone/C6.wav" />
+					<source src="{base}/high_drone/C6.wav" />
 					Your browser does not support the audio element.
 				</audio>
 			</div>
@@ -229,7 +230,7 @@
 			<li>Sets their initial volumes to -12dB</li>
 			<li>and, Chooses a random note to play.</li>
 		</ul>
-		<img class="img-fluid" src="/code-2.png" alt="A code block showing the looping logic" />
+		<img class="img-fluid" src="{base}/code-2.png" alt="A code block showing the looping logic" />
 	</div>
 	<div class="mb-3">
 		<h5 class="mt-3">Incidental sounds</h5>
@@ -237,7 +238,7 @@
 		<div class="d-flex flex-wrap justify-content-center align-items-center gap-2 mb-3">
 			{#each new Array(20) as _, i}
 				<audio controls style="max-width: 200px;">
-					<source src="/incidentals/{i + 1}.wav" />
+					<source src="{base}/incidentals/{i + 1}.wav" />
 					Your browser does not support the audio element.
 				</audio>
 			{/each}
@@ -251,7 +252,7 @@
 			<li>Sets their initial volumes to -12dB</li>
 			<li>and, Chooses a random note to play.</li>
 		</ul>
-		<img class="img-fluid" src="/code-3.png" alt="A code block showing the incidental sound logic" />
+		<img class="img-fluid" src="{base}/code-3.png" alt="A code block showing the incidental sound logic" />
 	</div>
 	<div class="mb-3">
 		<h5>From notation to playback. The melody generation process. 🎼</h5>
@@ -288,7 +289,7 @@
 		<h5>Notating a melody</h5>
 		<p>All of the melodic playback is being handled by a Javascript library called Tone.js . When coding instructions for audio playback, a pitch and rhythm must be provided. In my case, I chose to notate pitch using pitch-register notation, and I chose to notate rhythm using BPM/time signature relative values.</p>
 		<p>The code snippet below shows an example melody's "meta-data", including the melodic notation.</p>
-		<img class="img-fluid" src="/code-4.png" alt="A code block showing the meta-data for a melody" />
+		<img class="img-fluid" src="{base}/code-4.png" alt="A code block showing the meta-data for a melody" />
 	</div>
 	<div class="mb-3">
 		<h5>Melodic alteration</h5>
@@ -312,19 +313,19 @@
 			pitch is flagged as "changed", the current pitch is changed by default (no chance necessary). The only section that might be unintuitive is the part that defines <code>pitch</code>, which uses, <code>split()</code>, <code>filter()</code>, and <code>join()</code>. All this does is remove the register from
 			the note, because all the function is concerned with is the pitch.
 		</p>
-		<img class="img-fluid mb-3" src="/code-5.png" alt="A code block showing the pitch alteration logic" />
+		<img class="img-fluid mb-3" src="{base}/code-5.png" alt="A code block showing the pitch alteration logic" />
 		<p>The next code block alters durations. If you compare it to the pitch alteration function, you'll notice that they're mostly similar. The only main difference is that instead of selecting a pitch from an array of pitches, this function selects a rhythm from an array of rhythms.</p>
-		<img class="img-fluid mb-3" src="/code-6.png" alt="A code block showing the rhythm alteration logic" />
+		<img class="img-fluid mb-3" src="{base}/code-6.png" alt="A code block showing the rhythm alteration logic" />
 		<p>
 			The next transformation truncates the melody after a certain point. This is the simplest of the transformation to visualize. It follows the same logic that the previous transformations use in terms of flagging a note as the first note to undergo a transformation, then applying a transformation to the rest
 			of the notes in the melody; however, in this case, because the melody is being truncated, it just cuts it off after the first flagged note.
 		</p>
-		<img class="img-fluid mb-3" src="/code-7.png" alt="A code block showing the truncation logic" />
+		<img class="img-fluid mb-3" src="{base}/code-7.png" alt="A code block showing the truncation logic" />
 		<p>
 			The last alteration involves changing the melody's tempo. The reason why I chose to make this alteration mandatory, is due to slight tempo changes not having as profound of an impact on one's ability to recognize a melody. This function is very simple. It just adds or subtracts a number up to 25% of the
 			original tempo of the melody.
 		</p>
-		<img class="img-fluid mb-3" src="/code-8.png" alt="A code block showing the tempo alteration logic" />
+		<img class="img-fluid mb-3" src="{base}/code-8.png" alt="A code block showing the tempo alteration logic" />
 	</div>
 	<div class="mb-3">
 		<h5>Melodic playback</h5>
@@ -343,7 +344,7 @@
 					<p>A vibraphone inspired synth, that also has a sizzle-cymbalesque quality to it.</p>
 				</div>
 				<audio controls class="w-100">
-					<source src="/mallets/C4.wav" />
+					<source src="{base}/mallets/C4.wav" />
 					Your browser does not support the audio element.
 				</audio>
 			</div>
@@ -353,7 +354,7 @@
 					<p>A heavily filtered, and slightly bit-crushed guitar inspired synth.</p>
 				</div>
 				<audio controls class="w-100">
-					<source src="/plucks/C4.wav" />
+					<source src="{base}/plucks/C4.wav" />
 					Your browser does not support the audio element.
 				</audio>
 			</div>
@@ -363,13 +364,13 @@
 					<p>A breathy wooden flute sample, similar to a filtered bansuri.</p>
 				</div>
 				<audio controls class="w-100">
-					<source src="/winds/C4.wav" />
+					<source src="{base}/winds/C4.wav" />
 					Your browser does not support the audio element.
 				</audio>
 			</div>
 		</div>
 		<p>The code below shows how a melody is converted for playback purposes, which involves translating the rhythms to millisecond values, and selecting a sample at random for playback.</p>
-		<img class="img-fluid mb-3" src="/code-9.png" alt="A code block showing the playback logic" />
+		<img class="img-fluid mb-3" src="{base}/code-9.png" alt="A code block showing the playback logic" />
 		<p>
 			Then, we schedule the playback event to occur at a point after the previous note finishes. The code that controls sound playback is <code>sampler.triggerAttackRelease()</code>, which is Tone.js' method for taking a sound source and playing it back for a defined length of time. In addition to general
 			playback, the timing part of the code is also responsible for:
@@ -379,7 +380,7 @@
 			<li>Lighting up a random "note sliver", which is a horizontal slice of the screen that functions as a pitch visualizer during the piece's playback.</li>
 			<li>Generating another melody after a delay, but this only happens on the last note. Otherwise a melody would trigger each time a note plays back.</li>
 		</ul>
-		<img class="img-fluid mb-3" src="/code-10.png" alt="A code block showing the playback scheduling logic" />
+		<img class="img-fluid mb-3" src="{base}/code-10.png" alt="A code block showing the playback scheduling logic" />
 	</div>
 	<div class="mb-5">
 		<h4>What does the data tell us? 🤔</h4>
@@ -395,7 +396,7 @@
 			<li>3 containers for each of the 3 "optional" melodic transformations. Each container reports: the note where the change occurs, and the fragment of the melody that consists of all of the alterations.</li>
 		</ul>
 		<p>Here's an example of a fragment from <span style="color: HotPink;">Nicol's phone</span></p>
-		<img class="img-fluid mb-3" src="/code-11.png" alt="A code block showing an example of a fragment from Nicol's phone" />
+		<img class="img-fluid mb-3" src="{base}/code-11.png" alt="A code block showing an example of a fragment from Nicol's phone" />
 		<p>I think the best way to get anything meaningful from the data is to play around with it yourself. Use the sections later in the webpage to look at single sound sources, compare multiple, or look at the performance visualization.</p>
 	</div>
 	<div class="mb-3">
@@ -457,8 +458,8 @@
 			<span class="fw-bold">range of 10:10:40AM to 10:10:59AM</span>. For the sake of consistency, I'll assume that the recording started at 10:10:40AM.
 		</p>
 		<p>Upon examining the audio file closely in Ableton Live, the performance starts approximately when I say, "Go", which can be seen in the images below taking place approximately 5 minutes and 3 seconds into the recording. This suggests that the performance starts at 10:15:43AM.</p>
-		<img class="img-fluid" src="/ableton-1.png" alt="Ableton Live's timeline showing the start of the performance" />
-		<img class="img-fluid mb-3" src="/ableton-2.png" alt="Ableton Live's timeline showing the start of the performance" />
+		<img class="img-fluid" src="{base}/ableton-1.png" alt="Ableton Live's timeline showing the start of the performance" />
+		<img class="img-fluid mb-3" src="{base}/ableton-2.png" alt="Ableton Live's timeline showing the start of the performance" />
 		<p>This presents an issue because when looking at the analysis files for some of the participants, melodies were first generated as early as 10:14.</p>
 		<ul>
 			{#each earlyMelodies as { name, time }}
