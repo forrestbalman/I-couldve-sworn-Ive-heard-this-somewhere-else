@@ -16,8 +16,8 @@
 
 		// Define dimensions and scales
 		width = 900;
-		height = 100;
-		margin = { top: 20, right: 0, bottom: 20, left: 0 };
+		height = 75;
+		margin = { top: 20, right: 20, bottom: 20, left: 0 };
 		x = d3
 			.scaleTime()
 			.domain([new Date("2024-10-17T10:15:43"), new Date("2024-10-17T10:20:57")])
@@ -30,9 +30,6 @@
 		svg.append("g")
 			.attr("transform", `translate(0, ${height - margin.bottom})`)
 			.call(xAxis);
-
-		// Log the SVG element to the console for debugging
-		console.log(svg);
 	}
 
 	function createMelodyBars() {
@@ -97,7 +94,7 @@
 				}
 			}
 
-			return Math.round((length / tempo) * 60);
+			return (length / tempo) * 60;
 		}
 
 		function determineEndTime(melody, start, end) {
@@ -171,8 +168,6 @@
 
 		melodyBars = [];
 		melodyBars = bars.filter((bar) => !isNaN(bar.start) && !isNaN(bar.end));
-
-		console.log("Melody Bars:", melodyBars); // Debugging line
 
 		const svg = d3.select("#timeline");
 		const barHeight = 15;
@@ -268,5 +263,11 @@
 <style>
 	.container {
 		max-width: 900px;
+	}
+
+	@media (max-width: 992px) {
+		.container {
+			display: none;
+		}
 	}
 </style>

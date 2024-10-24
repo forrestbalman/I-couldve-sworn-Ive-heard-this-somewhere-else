@@ -126,7 +126,7 @@
 	}
 </script>
 
-<section id="about" class="container min-vh-100">
+<section id="about" class="container min-vh-100 pb-5">
 	<h1 class="text-center mb-4">About the piece: inspiration, methods, and other peeks behind the curtain 🔍</h1>
 	<div class="mb-5">
 		<h4>Overview. Tl;dr, copyright is ambiguous, and composers that use chance could be at risk</h4>
@@ -235,7 +235,7 @@
 	<div class="mb-3">
 		<h5 class="mt-3">Incidental sounds</h5>
 		<p>Every once and a while, the piece will play a curated, but arbitrary sound. There is a bank of 20 sounds the piece will choose from at any given time. These were all found on my hard drive as part of sound libraries I've collected over the years.</p>
-		<div class="d-flex flex-wrap justify-content-center align-items-center gap-2 mb-3">
+		<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
 			{#each new Array(20) as _, i}
 				<audio controls style="max-width: 200px;">
 					<source src="{base}/incidentals/{i + 1}.wav" />
@@ -451,7 +451,7 @@
 		<h5>Effect on potential market value</h5>
 		<p>Is the traction gained by an algorithmically generated composition that likely has no connection to the original work going to have any impact on the original work's market value? I think it's safe to say that the answer is no in pretty much all cases, but you never know.</p>
 	</div>
-	<div class="mb-5">
+	<div>
 		<h4>Figuring out specific timings in the recording. ⌛</h4>
 		<p>
 			My iPhone's <span class="fst-italic">Voice Memos</span> only tells me recording start and end times to the nearest minute. That being said, the recording is exactly <span class="fw-bold">18 minutes and 20 seconds long</span>, so I figure the performance had to have started in the

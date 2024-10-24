@@ -1,6 +1,7 @@
 <script>
 	import About from "$lib/analysis/About.svelte";
 	import SingleSource from "$lib/analysis/SingleSource.svelte";
+	import MultiSource from "$lib/analysis/MultiSource.svelte";
 </script>
 
 <main id="analysis" class="bg-dark text-light">
@@ -12,11 +13,12 @@
 			<nav class="d-flex gap-3 flex-column align-items-center">
 				<a class="text-light" href="#about">About</a>
 				<a class="text-light fw-light" href="#single-source">Single Source Analysis</a>
-				<a class="text-light" href="#multiple-sources">Multi source Analysis</a>
-				<a class="text-light" href="#melody-analysis">Performance visualization</a>
+				<a class="text-light" href="#multi-source">Multi source Analysis</a>
+				<a class="text-light" href="#visualization">Performance visualization</a>
 			</nav>
 		</div>
 	</section>
 	<About />
 	<SingleSource />
+	<MultiSource />
 </main>

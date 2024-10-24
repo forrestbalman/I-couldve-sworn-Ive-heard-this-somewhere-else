@@ -84,16 +84,16 @@
 	];
 
 	let data = sources[0];
-	let container;
 </script>
 
-<section id="single-source" class="min-vh-100 d-flex flex-column align-items-center pt-5" bind:this="{container}">
+<section id="single-source" class="min-vh-100 d-flex flex-column align-items-center pb-5">
 	<div class="container">
 		<h1 class="text-center mb-4">Taking a look at single sources</h1>
 		<p>
-			Use the dropdown to select a source to see what melodies were generated, and if/how they differ from the original. <span class="text-warning">Disclaimer about notation:</span> Some data includes a notated example which <span class="fw-bold">will not</span> appear on smaller screens ({"<"} 992px). Also, even
-			though a melody may be in a particular meter, the notation excludes bar lines. This is to keep the melody on a single line; however, the trade-off is that the rhythms may not be as clear if they were notated with measure relative ties.
+			<span class="text-warning">Disclaimer about notation:</span> Some data includes a notated example which <span class="fw-bold">will not appear on smaller screens ({"<"} 992px)</span>. Also, even though a melody may be in a particular meter, the notation excludes bar lines. This is to keep the melody on a
+			single line; however, the trade-off is that the rhythms may not be as clear if they were notated with measure relative ties.
 		</p>
+		<p>Use the dropdown to select a source to see what melodies were generated, and if/how they differ from the original.</p>
 		<select class="form-select mb-3" aria-label="Choose a source" bind:value="{data}">
 			<option value="" disabled>Choose a source</option>
 			{#each sources as source}
