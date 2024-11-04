@@ -78,7 +78,6 @@
 			source: vidulaComputer,
 		},
 	];
-
 	const earlyMelodies = findMelodiesThatPrecedePerformance();
 
 	function findMelodiesThatPrecedePerformance() {
@@ -126,7 +125,7 @@
 	}
 </script>
 
-<section id="about" class="container min-vh-100 pb-5">
+<section id="about" class="container min-vh-100 py-5">
 	<h1 class="text-center mb-4">About the piece: inspiration, methods, and other peeks behind the curtain 🔍</h1>
 	<div class="mb-5">
 		<h4>Overview. Tl;dr, copyright is ambiguous, and composers that use chance could be at risk</h4>
@@ -276,7 +275,6 @@
 			<li class="fst-italic">Never Gonna Give You Up</li>
 			<li class="fst-italic">Livin' on a Prayer</li>
 			<li class="fst-italic">Dancing Queen</li>
-			<li class="fst-italic">Stairway to Heaven</li>
 			<li class="fst-italic">Don't Stop Believin'</li>
 			<li class="fst-italic">The Final Countdown</li>
 			<li class="fst-italic">Y.M.C.A</li>
@@ -451,7 +449,7 @@
 		<h5>Effect on potential market value</h5>
 		<p>Is the traction gained by an algorithmically generated composition that likely has no connection to the original work going to have any impact on the original work's market value? I think it's safe to say that the answer is no in pretty much all cases, but you never know.</p>
 	</div>
-	<div>
+	<div id="timings" class="mb-5">
 		<h4>Figuring out specific timings in the recording. ⌛</h4>
 		<p>
 			My iPhone's <span class="fst-italic">Voice Memos</span> only tells me recording start and end times to the nearest minute. That being said, the recording is exactly <span class="fw-bold">18 minutes and 20 seconds long</span>, so I figure the performance had to have started in the
@@ -469,10 +467,98 @@
 		<p>I'm assuming that there we're participants who started the piece in advance and faded their volume in when I said go. That being said, all melodies generated before 10:15:43AM won't be included in the timeline visualizations for individual participants.</p>
 		<p>Looking at the audio recording, the performance ending after we all applauded, which occurs approximately 10 minutes and 18 seconds into the recording, making the length of the performance roughly 5 minutes and 15 seconds, suggesting that the performance ended at 10:20:57AM.</p>
 	</div>
+	<div class="mb-5">
+		<h4>Visualizations and the problems that arose post performance 🫨</h4>
+		<p>It turns out that creating a simple visualizer with the data I collected wasn't too difficult to create, in theory:</p>
+		<ul>
+			<li>Convert the timestamps from each event into seconds to compare with the relative length of the audio file.</li>
+			<li>Render transcription information on the screen.</li>
+		</ul>
+		<p>For the <span class="fst-italic">performance</span> section of the field recording, I chose to separate the data into spoken and melody sections. Unfortunately, problems began to appear when hearing the transcribed information display as I listened to the playback.</p>
+		<p>
+			Each analysis file reported back information of when a melody was generated indiscriminate of whether or not the sound was audible in the recording. Why is this a problem. Well, with so many sound sources contributing to this performance, it becomes a challenge to hear certain melodies for a variety of
+			reasons.
+		</p>
+		<ul>
+			<li>Their distance from the microphone.</li>
+			<li>The volume of the device playing back the melody.</li>
+			<li>Computer hiccups that prevented the melody playing back, i.e. generating the data for playback, but not playing the sound.</li>
+			<li>Generating sound, but not reporting the data back in the analysis file.</li>
+			<li>Timestamps differing between computers because of slight discrepancies between their clocks.</li>
+			<li>Reloading the piece at any point.</li>
+		</ul>
+		<p>
+			If you listen to the beginning of the recording, you can hear a melody based on <span class="fst-italic">Sweet Home Alabama</span>, which happens to be coming from Arya's computer. The timestamp aligns with the recording, which functions almost like a "downbeat" when trying to sync the analysis files with
+			the field recording.
+		</p>
+		<p>
+			However, it doesn't take long before we start to hear (or not hear) a combination of factors that are present (or not present) in the recording despite being present (or not present) in the data. Certain melodies are reported a bit later than they occur, or aren't present at all in the data despite being a
+			part of the recording.
+		</p>
+		<p>That being said, one potential, but nearly impossible approach would be to curate the data and filter out all non-present melodies. This would be an extreme (I would argue impossible) ear training exercise due to the complexity of the soundworld created by this particular performance.</p>
+		<p>
+			In this case, I'm willing to concede that there are a combination of factors (namely the ones listed earlier) that also include likely flaws in my code as far as data representation is concerned. I'm not worried about the data collection as a whole, because the process is bound to melody generation. When
+			the content is created, the analysis file has content added to it. In other words, if you were able to successfully load the piece and play it back, there wouldn't be anything preventing the analysis file from being generated.
+		</p>
+		<p>I think adding additional information to the fields at the end of the recording for data collection would've made data potentially more accurate. Things like:</p>
+		<ul>
+			<li>Make and model of computer.</li>
+			<li>Volume level.</li>
+			<li>Distance from the microphone.</li>
+		</ul>
+		<p>But in a final reflection on some of the problematic results of the algorithmic content of the piece, I think they tie in to the overall theme of the nuance of algorithms.</p>
+	</div>
+	<div>
+		<h4>In closing: Algorithms are human, too 👨‍🔬👩‍🔬</h4>
+		<p>I closed the previous section by talking about algorithms having nuance. This is true in a lot of cases, like in the case of this piece; however, it isn't always true.</p>
+		<p>
+			In a computer science curriculum, a student will often have to take a pair of related courses: <span class="fst-italic">Data Structures</span> and <span class="fst-italic">Algorithms</span>. In this context, students learn about how digital information is structured, and conventions that have arose to
+			manipulate that data (often the most efficiently). And because methods have been determined to handle data the most efficiently, the class becomes a matter of learning pre-established code, which isn't the most creative process.
+		</p>
+		<p>
+			Compare that to an artistic application of code, like this piece. I wrote algorithms that took a set of pitches, in this case copyrighted melodies, and curated a series of transformations. I had complete control over note just how the transformations were implemented, but the likelihood of them occurring,
+			as well. Bearing this in mind, and trying to stay somewhat connected to the discussion of algorithmic music and how it pertains to copyright, even in a case where pre-existing materials are being used as our source, not only are the transformed outcomes artistic interpretations capable of standing on their
+			own, but the process of creating the code that generated the content is just as artistic.
+		</p>
+		<p>
+			The term "algorithm," nowadays, is broadly applied to any digital system of recommendation. We imagine a super computer crunching numbers in a big warehouse somewhere in Silicon Valley, making decisions about what media will <span class="fw-bold">you</span> will consume at any given time. The reality is that
+			algorithms have to, at least, start with human input. Engineers are designing these technologies, and with the case of algorithms, like the ones in my piece, and the ones used by media platforms to recommend content, there are variables that are taken into account by artists and data scientists alike to create
+			a process that produces some type of outcome.
+		</p>
+		<p>
+			Will the outcome be the same every time? No, probably not. Is each outcome different from person to person? Yes, tremendously in most cases. Have internet algorithms deployed the SkyNet already, and is humanity already doomed 😱? Absolutely, yes! Just kidding.... The fact remains that between the
+			conversational (arguably misappropriated) use of the term algorithm suggests that the process itself was created by a means of automation, when in reality algorithms are not only an essential way in which we engage with content over the internet, but algorithms are also created by humans, engineers and
+			artists alike.
+		</p>
+		<p>
+			In my case, as the composer, yes, the algorithms generated the sounds, visuals, and all other content associated with this piece, but the computer <span class="fw-bold">did not</span> know how to do go about doing that until I programmed it to do so. As a composer of computer music that often uses algorithms
+			for its content, my code functions comparably to a score for a member of a symphony orchestra. Just as much effort goes into the coding behind the scenes.
+		</p>
+		<p>
+			In a final close, I'd like to say that algorithms have been endemic to music for a long time. Systems like scales, rhythmic motifs, phrases, chords, and other musical devices are not only algorithms in and of themselves, but they can also serve as fuel for other algorithmic processes that, in turn, generate
+			more musical content (like in the case of this piece). Copyright definitions pertaining to music are broad, which is a good thing due to the importance of interpretation in art, but the language doesn't feel as if it truly encompasses how far music has come regarding the tools and resources we already have
+			access to. If an algorithmically random piece of music gets flagged by YouTube's content vetting algorithm, will it likely fall under the guidelines of <span class="fst-italic">Fair Use</span>? Yes, but I don't think the discussion ends here, or there.
+		</p>
+		<ul>
+			<li>
+				Because computers are capable of hearing much more objectively than humans, there are some clear drawbacks to using the same system to compare a piece like mine, for instance, to a video that makes no attempt to transform the content. Should there be an alternative vetting process for "works of sonic
+				art"?
+			</li>
+			<li>Computers can play back rhythms, pitches, timbres (really all aspects of sound) indiscriminately, who's gets to decide if any two melodies are identical if one uses slightly different sounds that can be detected by a computer, but not perceivable by humans?</li>
+		</ul>
+	</div>
 </section>
 
 <style>
 	.container {
 		max-width: 900px;
+	}
+
+	a {
+		color: rgb(145, 248, 214);
+	}
+
+	.fw-bold {
+		color: rgb(248, 203, 145);
 	}
 </style>

@@ -127,6 +127,7 @@
 				const x = convertStartToPercentage(startInSeconds);
 				const width = convertDurationToPercentage(durationInSeconds);
 				const metaData = melody;
+				const border = returnBorderColor(melody);
 
 				melodyPlots.push({
 					timestamp,
@@ -134,6 +135,7 @@
 					durationInSeconds,
 					x,
 					width,
+					border,
 					metaData,
 				});
 			}
@@ -220,13 +222,43 @@
 				return (duration / performanceDuration) * 100;
 			}
 
+			function returnBorderColor(melody) {
+				if (melody.melodyName === "Stairway to Heaven") {
+					return "#fe0000";
+				} else if (melody.melodyName === "Billie Jean") {
+					return "#800001";
+				} else if (melody.melodyName === "What a Wonderful World") {
+					return "#fe6a00";
+				} else if (melody.melodyName === "Sweet Child O' Mine") {
+					return "#803400";
+				} else if (melody.melodyName === "Hey Jude") {
+					return "#ffd800";
+				} else if (melody.melodyName === "Never Gonna Give You Up") {
+					return "#806b00";
+				} else if (melody.melodyName === "Livin' on a Prayer") {
+					return "#00fe21";
+				} else if (melody.melodyName === "Dancing Queen") {
+					return "#007f0e";
+				} else if (melody.melodyName === "Don't Stop Believin'") {
+					return "#FFFFFF";
+				} else if (melody.melodyName === "The Final Countdown") {
+					return "#00497e";
+				} else if (melody.melodyName === "Y.M.C.A") {
+					return "#0026ff";
+				} else if (melody.melodyName === "Sweet Home Alabama") {
+					return "#001280";
+				} else if (melody.melodyName === "U Can't Touch This") {
+					return "#b100fe";
+				} else if (melody.melodyName === "Careless Whisper") {
+					return "#590080";
+				}
+			}
+
 			participant.bars = melodyPlots;
 		}
 
 		updateMelodies();
 	}
-
-	$: console.log(selectedMelodyData);
 
 	onMount(() => {
 		createChartData();
@@ -235,11 +267,11 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<section id="multi-source" class="min-vh-100 container d-flex flex-column justify-content-center align-items-center pb-5">
+<section id="multi-source" class="min-vh-100 container d-flex flex-column justify-content-center align-items-center py-5">
 	<div class="mb-3">
 		<h1 class="text-center mb-3 pt-5">Multi Source Analysis</h1>
 		<p>This section provides an analysis of multiple sources of data collected during the performance. It allows for a comparative view of the melodies generated from different devices.</p>
-		<div class="row">
+		<div class="row mb-3">
 			{#each melodies as melody, i (melody.name)}
 				<div class="col-3">
 					<div class="form-check me-2">
@@ -256,6 +288,25 @@
 					</div>
 				</div>
 			{/each}
+		</div>
+		<div>
+			<p>Each element's border corresponds with the source melody. The colors are as follows:</p>
+			<div class="d-flex justify-content-center flex-wrap gap-2 user-select-none">
+				<span class="p-1 rounded-2" style="background: #fe0000;">Stairway to Heaven</span>
+				<span class="p-1 rounded-2" style="background: #800001;">Billie Jean</span>
+				<span class="p-1 rounded-2" style="background: #fe6a00;">What a Wonderful World</span>
+				<span class="p-1 rounded-2" style="background: #803400;">Sweet Child O' Mine</span>
+				<span class="p-1 rounded-2 text-black" style="background: #ffd800;">Hey Jude</span>
+				<span class="p-1 rounded-2" style="background: #806b00;">Never Gonna Give You Up</span>
+				<span class="p-1 rounded-2 text-black" style="background: #00fe21;">Livin' on a Prayer</span>
+				<span class="p-1 rounded-2" style="background: #007f0e;">Dancing Queen</span>
+				<span class="p-1 rounded-2 text-black" style="background: #FFFFFF;">Don't Stop Believin'</span>
+				<span class="p-1 rounded-2" style="background: #00497e;">The Final Countdown</span>
+				<span class="p-1 rounded-2" style="background: #0026ff;">Y.M.C.A</span>
+				<span class="p-1 rounded-2" style="background: #001280;">Sweet Home Alabama</span>
+				<span class="p-1 rounded-2" style="background: #b100fe;">U Can't Touch This</span>
+				<span class="p-1 rounded-2" style="background: #590080;">Careless Whisper</span>
+			</div>
 		</div>
 	</div>
 	<div class="mb-5 w-100">
@@ -274,7 +325,7 @@
 					<div class="col-10 d-flex p-0 position-relative overflow-hidden">
 						{#if melody.bars}
 							{#each melody.bars as bar}
-								<div class="position-absolute top-50 translate-middle-y" style="left: {bar.x}%; width: {bar.width}%; height: 10px; background: {melody.color || 'steelblue'};" on:click="{() => (selectedMelodyData = bar.metaData)}"></div>
+								<div class="position-absolute top-50 translate-middle-y rounded-1" style="left: {bar.x}%; width: {bar.width}%; height: 10px; background: {melody.color || 'steelblue'}; border: 1px solid {bar.border};" on:click="{() => (selectedMelodyData = bar.metaData)}"></div>
 							{/each}
 						{/if}
 					</div>
@@ -350,6 +401,14 @@
 <style>
 	.container {
 		max-width: 900px;
+	}
+
+	a {
+		color: rgb(145, 248, 214);
+	}
+
+	.fw-bold {
+		color: rgb(248, 203, 145);
 	}
 
 	@media (max-width: 992px) {

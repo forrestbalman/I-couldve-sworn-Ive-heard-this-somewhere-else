@@ -86,7 +86,7 @@
 	let data = sources[0];
 </script>
 
-<section id="single-source" class="min-vh-100 d-flex flex-column align-items-center pb-5">
+<section id="single-source" class="min-vh-100 d-flex flex-column align-items-center py-5">
 	<div class="container">
 		<h1 class="text-center mb-4">Taking a look at single sources</h1>
 		<p>
@@ -115,5 +115,13 @@
 <style>
 	.container {
 		max-width: 900px;
+	}
+
+	a {
+		color: rgb(145, 248, 214);
+	}
+
+	.fw-bold {
+		color: rgb(248, 203, 145);
 	}
 </style>
