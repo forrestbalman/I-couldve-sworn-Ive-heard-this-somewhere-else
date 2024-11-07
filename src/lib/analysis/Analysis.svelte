@@ -3,6 +3,7 @@
 	import SingleSource from "$lib/analysis/SingleSource.svelte";
 	import MultiSource from "$lib/analysis/MultiSource.svelte";
 	import Transcription from "$lib/analysis/Transcription.svelte";
+	import InterviewTranscription from "$lib/analysis/InterviewTranscription.svelte";
 </script>
 
 <main id="analysis" class="bg-dark text-light">
@@ -16,6 +17,7 @@
 				<a href="#single-source">Single Source Analysis</a>
 				<a href="#multi-source">Multi source Analysis</a>
 				<a href="#transcription">Performance visualization</a>
+				<a href="#interview">Post Concert Discussion Analysis</a>
 			</nav>
 		</div>
 	</section>
@@ -23,6 +25,7 @@
 	<SingleSource />
 	<MultiSource />
 	<Transcription />
+	<InterviewTranscription />
 </main>
 
 <style>
