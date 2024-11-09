@@ -22,12 +22,12 @@
 		{
 			time: 6.5,
 			speaker: "Vidula",
-			words: "We had to put our name... yeah, but that could be (unsure)",
+			words: "We had to put our name... yeah, but that could be (unsure).",
 		},
 		{
 			time: 7.75,
 			speaker: "Forrest",
-			words: "Yeah",
+			words: "Yeah.",
 		},
 		{
 			time: 10.25,
@@ -42,7 +42,7 @@
 		{
 			time: 12.8,
 			speaker: "Michael",
-			words: "Your hard drive performed it",
+			words: "Your hard drive performed it.",
 		},
 		{
 			time: 13.6,
@@ -122,7 +122,7 @@
 		{
 			time: 50.3,
 			speaker: "Vidula",
-			words: "Literally, I was just like, rec... receiving it",
+			words: "Literally, I was just like, rec... receiving it.",
 		},
 		{
 			time: 52.9,
@@ -147,7 +147,7 @@
 		{
 			time: 64,
 			speaker: "Michael",
-			words: "Mmm... Okay, yeah",
+			words: "Mmm... Okay, yeah.",
 		},
 		{
 			time: 64.2,
@@ -182,7 +182,7 @@
 		{
 			time: 82.4,
 			speaker: "Forrest",
-			words: "Well think... start thinking of your laptop as an instrument",
+			words: "Well think... start thinking of your laptop as an instrument.",
 		},
 		{
 			time: 84.6,
@@ -192,7 +192,7 @@
 		{
 			time: 85.1,
 			speaker: "Nicol",
-			words: `So, Roland Barthes would say that "when you read, you are a writer"`,
+			words: `So, Roland Barthes would say that "when you read, you are a writer."`,
 		},
 		{
 			time: 89.5,
@@ -202,7 +202,7 @@
 		{
 			time: 90,
 			speaker: "Vidula",
-			words: `But, again, I'm reading, like, but... with AI... I'm just letting AI write for me, I don't even have to read it... `,
+			words: `But, again, I'm reading, like, but... with AI... I'm just letting AI write for me, I don't even have to read it...`,
 		},
 		{
 			time: 90,
@@ -242,7 +242,7 @@
 		{
 			time: 110.5,
 			speaker: "Forrest",
-			words: `Well... `,
+			words: `Well...`,
 		},
 		{
 			time: 112,
@@ -252,7 +252,7 @@
 		{
 			time: 120,
 			speaker: "Vidula",
-			words: `How so? Like... eh, because the way I use, uh... my laptop, does it shape how the melody's created. `,
+			words: `How so? Like... eh, because the way I use, uh... my laptop, does it shape how the melody's created.`,
 		},
 		{
 			time: 127.8,
@@ -267,7 +267,7 @@
 		{
 			time: 141.4,
 			speaker: "Class",
-			words: `Yeah`,
+			words: `Yeah.`,
 		},
 		{
 			time: 141.9,
@@ -331,6 +331,10 @@
 
 			scrollToBottom();
 		});
+
+		audio.addEventListener("ended", () => {
+			playing = false;
+		});
 	});
 </script>
 
@@ -339,25 +343,28 @@
 		<h1 class="text-center">"...but we didn't do anything."</h1>
 		<h4 class="text-center fw-normal mb-5">A post concert discussion about algorithms and differing perspectives on music engagement as a performer/participant</h4>
 	</div>
-	<div class="container mb-5">
+	<div class="container">
 		<p>In this excerpt from our post-concert discussion, I try my best to isolate parts of the conversation that are relevant to the point of the analysis below. Bear in mind there is some cross chatter due to the recording being informal, but the transcription documents the content that'll be analyzed below.</p>
 	</div>
-	<div class="container mb-5 {playing ? 'position-relative' : 'd-flex justify-content-center align-items-center'}" style="height: 400px;">
+	<div class="container d-flex justify-content-center align-items-start mb-2" style="height: 40px;">
 		{#if !playing}
-			{#if loaded}
-				<button class="btn btn-light" on:click="{start}">Play</button>
-			{:else}
-				<div class="spinner-border" role="status">
-					<span class="visually-hidden">Loading...</span>
-				</div>
-			{/if}
+			<button class="btn btn-light" on:click="{start}">Play</button>
+		{:else}
+			<button class="btn btn-light" on:click="{() => (audio.pause(), (playing = false))}">Pause</button>
+		{/if}
+	</div>
+	<div class="container mb-5" style="height: 400px;">
+		{#if !loaded}
+			<div class="spinner-border" role="status">
+				<span class="visually-hidden">Loading...</span>
+			</div>
 		{:else if duration && currentTime}
 			<input type="range" class="form-range" min="0" max="{duration}" bind:value="{currentTime}" on:input="{() => (audio.currentTime = currentTime)}" />
 			<div class="d-flex flex-column gap-4" transition:fade>
 				<div bind:this="{container}" class="d-flex flex-column gap-2 overflow-y-auto" style="height: 400px;">
 					{#each transcription as { speaker, words, visible }}
 						{#if visible}
-							<div class="text-light" transition:fade>
+							<div class="text-light pe-3" transition:fade>
 								<p class="m-0">{speaker}</p>
 								<p class="m-0">"{words}"</p>
 							</div>
@@ -434,7 +441,7 @@
 				<blockquote class="blockquote">
 					<p>Like, of course, AI can write everything for me, but... I'm not becoming a writer.</p>
 				</blockquote>
-				<figcaption class="blockquote-footer mb-0">Forrest</figcaption>
+				<figcaption class="blockquote-footer mb-0">Vidula</figcaption>
 			</figure>
 			<p>
 				AI has been a topic that gets brought up in <span class="fw-bold">every single talk I've had about my music</span>. For starters, it's a tool that I am fascinated in using in my own work; if for any reason just to implement it in a way that demonstrates that it's not a replacement for human creativity,
