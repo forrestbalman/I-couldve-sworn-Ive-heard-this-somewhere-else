@@ -1,16 +1,337 @@
 <script>
+	import { onMount } from "svelte";
+	import { base } from "$app/paths";
+	import { fade } from "svelte/transition";
+
 	const spoken = [
 		{
 			time: 0,
 			speaker: "Vidula",
-			words: "... we didn't do anything.",
+			words: "... we didn't do anything. 😂",
 		},
 		{
 			time: 2,
 			speaker: "Forrest",
-			words: "What melodies? What do you mean?",
+			words: "What melody? What do you mean?",
+		},
+		{
+			time: 3,
+			speaker: "Vidula",
+			words: "Like, when you were saying... it's like my analysis, or like, you know?",
+		},
+		{
+			time: 6.5,
+			speaker: "Vidula",
+			words: "We had to put our name... yeah, but that could be (unsure)",
+		},
+		{
+			time: 7.75,
+			speaker: "Forrest",
+			words: "Yeah",
+		},
+		{
+			time: 10.25,
+			speaker: "Forrest",
+			words: "Well, you performed the piece. Or, your hardware did.",
+		},
+		{
+			time: 11.6,
+			speaker: "Vidula",
+			words: "That's what I, eh, how!? 😂",
+		},
+		{
+			time: 12.8,
+			speaker: "Michael",
+			words: "Your hard drive performed it",
+		},
+		{
+			time: 13.6,
+			speaker: "Forrest",
+			words: "Well I could... well, the piece couldn't've, eh, happened without you.",
+		},
+		{
+			time: 16,
+			speaker: "Vidula",
+			words: "😂",
+		},
+		{
+			time: 16.5,
+			speaker: "Vidula",
+			words: "That's... scary?",
+		},
+		{
+			time: 16.75,
+			speaker: "Forrest",
+			words: "Without any of us, so...",
+		},
+		{
+			time: 18.25,
+			speaker: "Class",
+			words: "😂😂😂",
+		},
+		{
+			time: 19.25,
+			speaker: "Vidula",
+			words: "Pointless? I don't know... 😂 because just yesterday, just last week, we were like, talking about alienation. This feels alienation.",
+		},
+		{
+			time: 26.75,
+			speaker: "Nicol",
+			words: "Uh huh.",
+		},
+		{
+			time: 27.1,
+			speaker: "Vidula",
+			words: "😂, because, when your prac... like, this music, uhh.",
+		},
+		{
+			time: 32.2,
+			speaker: "Vidula",
+			words: "... example came up like when you're actually practicing music, or painting, you're actually... also shaping you as a musician?",
+		},
+		{
+			time: 40.2,
+			speaker: "Nicol",
+			words: "Uh huh.",
+		},
+		{
+			time: 40.25,
+			speaker: "Vidula",
+			words: "... but when that has not happened... the alienation will occur. (???)",
+		},
+		{
+			time: 43.6,
+			speaker: "Forrest",
+			words: "This doesn't shape you as a musician?",
+		},
+		{
+			time: 45.25,
+			speaker: "Class",
+			words: "😂😂",
+		},
+		{
+			time: 46.4,
+			speaker: "Vidula",
+			words: "I mean, I'm not doing anything!",
+		},
+		{
+			time: 48.4,
+			speaker: "Forrest",
+			words: "I don't know... I mean, I feel like, with...",
+		},
+		{
+			time: 50.3,
+			speaker: "Vidula",
+			words: "Literally, I was just like, rec... receiving it",
+		},
+		{
+			time: 52.9,
+			speaker: "Forrest",
+			words: "That's kinda why... computers are great, because we don't have to do anything.",
+		},
+		{
+			time: 57.5,
+			speaker: "Forrest",
+			words: "Or, the... why it's not necessarily that we're doing anything, the computer's a tool to help automate a process that we would otherwise be doing.",
+		},
+		{
+			time: 57.6,
+			speaker: "Class",
+			words: "😂😂😂",
+		},
+		{
+			time: 57.7,
+			speaker: "Vidula",
+			words: "Okay, that's scary... 😂",
+		},
+		{
+			time: 64,
+			speaker: "Michael",
+			words: "Mmm... Okay, yeah",
+		},
+		{
+			time: 64.2,
+			speaker: "Vidula",
+			words: "It's like why, for instance, like, writing... If I'm not writing... myself, I'm not making myself into a writer.",
+		},
+		{
+			time: 67.75,
+			speaker: "Vidula",
+			words: "Like, of course, AI can write everything for me, but... I'm not becoming a writer.",
+		},
+		{
+			time: 73,
+			speaker: "Forrest",
+			words: "Sure.",
+		},
+		{
+			time: 75.8,
+			speaker: "Vidula",
+			words: "I'm getting the assignments written, but... I'm not the writer.",
+		},
+		{
+			time: 80.5,
+			speaker: "Forrest",
+			words: "It's just... think of... think...",
+		},
+		{
+			time: 80.75,
+			speaker: "Vidula",
+			words: "I'm not shaping myself as a writer.",
+		},
+		{
+			time: 82.4,
+			speaker: "Forrest",
+			words: "Well think... start thinking of your laptop as an instrument",
+		},
+		{
+			time: 84.6,
+			speaker: "Vidula",
+			words: "Mmm...",
+		},
+		{
+			time: 85.1,
+			speaker: "Nicol",
+			words: `So, Roland Barthes would say that "when you read, you are a writer"`,
+		},
+		{
+			time: 89.5,
+			speaker: "Michael",
+			words: "Mmm...",
+		},
+		{
+			time: 90,
+			speaker: "Vidula",
+			words: `But, again, I'm reading, like, but... with AI... I'm just letting AI write for me, I don't even have to read it... `,
+		},
+		{
+			time: 90,
+			speaker: "Nicol",
+			words: `Death of the Author.`,
+		},
+		{
+			time: 98.4,
+			speaker: "Vidula",
+			words: `I just have to print it and (???), just like.`,
+		},
+		{
+			time: 100.5,
+			speaker: "Forrest",
+			words: `I get what you're saying, but in... in my defense, this is not AI.`,
+		},
+		{
+			time: 101.6,
+			speaker: "Vidula",
+			words: `Yeah...`,
+		},
+		{
+			time: 103.3,
+			speaker: "Vidula",
+			words: `No! I'm not e... I'm not saying you should defend or anything, but I'm in a...`,
+		},
+		{
+			time: 107.5,
+			speaker: "Class",
+			words: `😂`,
+		},
+		{
+			time: 107.75,
+			speaker: "Vidula",
+			words: `I don't know! I can't call it, like, my melody... 😂. The way you're saying. You... I created.`,
+		},
+		{
+			time: 110.5,
+			speaker: "Forrest",
+			words: `Well... `,
+		},
+		{
+			time: 112,
+			speaker: "Forrest",
+			words: `Well, I mean, t... it... it... it was played from your hardware, and generated by your computer, so I guess there is some... kind of... artistic sense of ownership there.`,
+		},
+		{
+			time: 120,
+			speaker: "Vidula",
+			words: `How so? Like... eh, because the way I use, uh... my laptop, does it shape how the melody's created. `,
+		},
+		{
+			time: 127.8,
+			speaker: "Forrest",
+			words: `No, but your laptop... but based on the fact that your laptop ran the piece at that point in time, with everything else going on, it's unique.`,
+		},
+		{
+			time: 135.8,
+			speaker: "Kolawole",
+			words: `Yeah, anything for initiating that she also has an input... she initiated the process of it's playing.`,
+		},
+		{
+			time: 141.4,
+			speaker: "Class",
+			words: `Yeah`,
+		},
+		{
+			time: 141.9,
+			speaker: "Forrest",
+			words: `And you consented to being part of the performance, so...`,
+		},
+		{
+			time: 141.9,
+			speaker: "Tyler",
+			words: `If you...`,
+		},
+		{
+			time: 144.5,
+			speaker: "Tyler",
+			words: `If you weren't here, it wouldn't have been the same.`,
+		},
+		{
+			time: 146.4,
+			speaker: "Forrest",
+			words: `Exactly.`,
 		},
 	];
+	let audio, loaded, duration, currentTime, playing, transcription, container;
+
+	function scrollToBottom() {
+		if (container) {
+			container.scrollTop = container.scrollHeight;
+		}
+	}
+
+	function start() {
+		audio.play();
+		playing = true;
+	}
+
+	onMount(() => {
+		duration = 146;
+		currentTime = 0;
+
+		audio = new Audio(`${base}/interview.mp3`);
+		audio.addEventListener("loadeddata", () => {
+			loaded = true;
+			spoken.forEach((line) => {
+				line.visible = false;
+			});
+		});
+
+		audio.addEventListener("timeupdate", () => {
+			duration = audio.duration;
+			currentTime = audio.currentTime;
+
+			let updatedSpoken = spoken.map((line) => {
+				if (audio.currentTime >= line.time) {
+					return { ...line, visible: true };
+				} else {
+					return { ...line, visible: false };
+				}
+			});
+
+			transcription = updatedSpoken;
+
+			scrollToBottom();
+		});
+	});
 </script>
 
 <section id="interview" class="min-vh-100 d-flex flex-column justify-content-between py-5 text-light">
@@ -18,10 +339,113 @@
 		<h1 class="text-center">"...but we didn't do anything."</h1>
 		<h4 class="text-center fw-normal mb-5">A post concert discussion about algorithms and differing perspectives on music engagement as a performer/participant</h4>
 	</div>
-	<div class="container">
-		<p>In this excerpt from our post-concert discussion, I try my best to isolate parts of the conversation that are relevant to the point of the analysis below. Bear in mind there is some cross chatter due to the nature of the recording, but the transcription documents the content that'll be analyzed below.</p>
+	<div class="container mb-5">
+		<p>In this excerpt from our post-concert discussion, I try my best to isolate parts of the conversation that are relevant to the point of the analysis below. Bear in mind there is some cross chatter due to the recording being informal, but the transcription documents the content that'll be analyzed below.</p>
+	</div>
+	<div class="container mb-5 {playing ? 'position-relative' : 'd-flex justify-content-center align-items-center'}" style="height: 400px;">
+		{#if !playing}
+			{#if loaded}
+				<button class="btn btn-light" on:click="{start}">Play</button>
+			{:else}
+				<div class="spinner-border" role="status">
+					<span class="visually-hidden">Loading...</span>
+				</div>
+			{/if}
+		{:else if duration && currentTime}
+			<input type="range" class="form-range" min="0" max="{duration}" bind:value="{currentTime}" on:input="{() => (audio.currentTime = currentTime)}" />
+			<div class="d-flex flex-column gap-4" transition:fade>
+				<div bind:this="{container}" class="d-flex flex-column gap-2 overflow-y-auto" style="height: 400px;">
+					{#each transcription as { speaker, words, visible }}
+						{#if visible}
+							<div class="text-light" transition:fade>
+								<p class="m-0">{speaker}</p>
+								<p class="m-0">"{words}"</p>
+							</div>
+						{/if}
+					{/each}
+				</div>
+			</div>
+		{/if}
+	</div>
+	<div class="container mb-5">
+		<h4>Responses to individual remarks</h4>
+		<div class="mb-3">
+			<figure class="mb-0 ms-3">
+				<blockquote class="blockquote">
+					<p>... we didn't do anything. 😂</p>
+				</blockquote>
+				<figcaption class="blockquote-footer mb-0">Vidula</figcaption>
+			</figure>
+			<p>You can read (a lot 😬) more about my stance on this sentiment below, but the tl;dr is that <span class="fw-bold">I believe we did</span>.</p>
+		</div>
+		<div class="mb-3">
+			<figure class="mb-0 ms-3">
+				<blockquote class="blockquote">
+					<p>...just last week, we were... talking about alienation. This feels [like] alienation.</p>
+				</blockquote>
+				<figcaption class="blockquote-footer mb-0">Vidula</figcaption>
+			</figure>
+			<p>
+				I can only really respond to this in the context of my own music. I interpret this two ways. First, I understand that engaging with something unfamiliar can be alienating. I've felt this many times in my own life, both in musical and non-musical situations. Second, in my music in particular, I focus
+				primarily on accessibility. I want the music to do the <span class="fw-bold">opposite</span> of alienate. I want people regardless of their musical experience to make music by providing them with a format that allows them to make meaningful contributions to the music. This isn't a quality I've encountered
+				in any algorithmic composition. In fact, the technology and methods that go into making involved computer music is usually too gnarly for the average musically fascinated person to get behind. I hope that the alienation wasn't experienced because of malice. As long as I'm writing music, anyone with a willingness
+				to participate will have a place in any performances/activities I am a part of.
+			</p>
+		</div>
+		<div class="mb-3">
+			<figure class="mb-0 ms-3">
+				<blockquote class="blockquote">
+					<p>when you're actually practicing music, or painting, you're actually... also shaping you as a musician?</p>
+				</blockquote>
+				<figcaption class="blockquote-footer mb-0">Vidula</figcaption>
+			</figure>
+			<p>
+				I talk more about my stance on talent and performance below, but I'm honing in on the use of the word "actually" here. The point behind how I designed this piece was that there didn't need to be rehearsal to produce output. Whether or not needing to invest more time into learning a skill shapes you any
+				more than instances that aren't a result of time investment is a reflection of one's personal relationship with whatever discipline is being discussed. I feel like I've been shaped as a musician mostly through listening both for pleasure and educational purposes.
+			</p>
+		</div>
+		<div class="mb-3">
+			<figure class="mb-0 ms-3">
+				<blockquote class="blockquote">
+					<p>when you're actually practicing music, or painting, you're actually... also shaping you as a musician?</p>
+				</blockquote>
+				<figcaption class="blockquote-footer mb-0">Vidula</figcaption>
+			</figure>
+			<p>
+				I talk more about my stance on talent and performance below, but I'm honing in on the use of the word "actually" here. The point behind how I designed this piece was that there didn't need to be rehearsal to produce output. Whether or not needing to invest more time into learning a skill shapes you any
+				more than instances that aren't a result of time investment is a reflection of one's personal relationship with whatever discipline is being discussed. I feel like I've been shaped as a musician mostly through listening both for pleasure and educational purposes. This is why I followed up by asking,
+				"This doesn't shape you as a musician?" Like I mentioned before, I talk about notions of talent below.
+			</p>
+		</div>
+		<div class="mb-3">
+			<figure class="mb-0 ms-3">
+				<blockquote class="blockquote">
+					<p>why it's not necessarily that we're doing anything, the computer's a tool to help automate a process that we would otherwise be doing.</p>
+				</blockquote>
+				<figcaption class="blockquote-footer mb-0">Forrest</figcaption>
+			</figure>
+			<p>
+				Side note, I feel vein 👿 quoting myself. I program computers to generate sound in a perpetual, non-linearly organized, fashion in the majority of my music. Is this endemic to algorithmic composition? No, but, algorithms are what manipulate the data that turns into sound. This wouldn't be possible
+				without a computer. In fact, no aspects of this piece would be possible without a computer. The fact that the technology is available to leverage for musical purposes is one of the primary reasons why pieces like this can even by conceptualized.
+			</p>
+		</div>
+		<div class="mb-3">
+			<figure class="mb-0 ms-3">
+				<blockquote class="blockquote">
+					<p>Like, of course, AI can write everything for me, but... I'm not becoming a writer.</p>
+				</blockquote>
+				<figcaption class="blockquote-footer mb-0">Forrest</figcaption>
+			</figure>
+			<p>
+				AI has been a topic that gets brought up in <span class="fw-bold">every single talk I've had about my music</span>. For starters, it's a tool that I am fascinated in using in my own work; if for any reason just to implement it in a way that demonstrates that it's not a replacement for human creativity,
+				but rather another tool (like a computer 💻). When someone sees something automatically pop up on their computer without having to put forth any effort, there's a general assumption that AI is being involved, but in fact, the piece was just programmed to run automatically with limited user engagement.
+				AI is powered by algorithms that handle sets of source material that are then parsed in order to return a result the user asks for. ChatGPT using countless freely available publications. AI can seemingly generate new content, but it is a byproduct of aggregating human sources.
+				<span class="fw-bold">The computer is not sentient.</span> Morality surrounding current AI art models is a completely separate discussion.
+			</p>
+		</div>
 	</div>
 	<div class="container">
+		<h4>My thoughts on what constitutes performance/talent</h4>
 		<p>
 			What does it take in order to be considered as a performer? I believe a common sentiment is that performance art is a skill, regardless of discipline. The act of putting on a performance at any level of experience takes courage, vision, and planning. Musicians often spend months and years attempting to
 			perfect the material they plan to put on a sonic display of their <span class="fw-bold">talent</span>. In this case, talent is understood as being more skilled in a particular area than the average person, which then leads to leveraging that skill to create an engaging and entertaining experience for an

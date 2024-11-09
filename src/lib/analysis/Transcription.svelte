@@ -508,8 +508,6 @@
 		}
 	}
 
-	$: if (currentTime && duration) console.log(currentTime, duration);
-
 	onMount(() => {
 		duration = 381;
 		currentTime = 0;
