@@ -4,6 +4,7 @@
 	import MultiSource from "$lib/analysis/MultiSource.svelte";
 	import Transcription from "$lib/analysis/Transcription.svelte";
 	import InterviewTranscription from "$lib/analysis/InterviewTranscription.svelte";
+	import Presentation from "$lib/analysis/Presentation.svelte";
 </script>
 
 <main id="analysis" class="bg-dark text-light">
@@ -26,14 +27,11 @@
 	<MultiSource />
 	<Transcription />
 	<InterviewTranscription />
+	<Presentation />
 </main>
 
 <style>
 	a {
 		color: rgb(145, 248, 214);
-	}
-
-	.fw-bold {
-		color: rgb(248, 203, 145);
 	}
 </style>

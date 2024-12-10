@@ -339,27 +339,27 @@
 					{#each [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as i}
 						<p class="time-marker position-absolute" style="left: {i * 10}%; transform: translateX(-50%);">
 							{#if i === 0}
-								10:15:43
+								15:43
 							{:else if i === 1}
-								10:16:13
+								16:13
 							{:else if i === 2}
-								10:16:43
+								16:43
 							{:else if i === 3}
-								10:17:13
+								17:13
 							{:else if i === 4}
-								10:17:43
+								17:43
 							{:else if i === 5}
-								10:18:13
+								18:13
 							{:else if i === 6}
-								10:18:43
+								18:43
 							{:else if i === 7}
-								10:19:13
+								19:13
 							{:else if i === 8}
-								10:19:43
+								19:43
 							{:else if i === 9}
-								10:20:13
+								20:13
 							{:else if i === 10}
-								10:20:57
+								20:57
 							{/if}
 						</p>
 					{/each}
@@ -403,16 +403,16 @@
 		max-width: 900px;
 	}
 
-	a {
-		color: rgb(145, 248, 214);
-	}
-
 	.fw-bold {
 		color: rgb(248, 203, 145);
 	}
 
 	@media (max-width: 992px) {
 		.container {
+			display: none;
+		}
+
+		.timeline {
 			display: none;
 		}
 	}
